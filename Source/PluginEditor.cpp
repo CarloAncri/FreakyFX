@@ -37,15 +37,16 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   g.setColour(juce::Colours::white);
   g.setFont(juce::FontOptions(15.0f));
   
-  /*
-  g.drawText("Cutoff Freq", 30, 30 + MEDIUM_SLIDER_DIM, 100, 20, juce::Justification::centred, true);
-  g.drawText("Octaver", 30, PLUG_HEIGHT - (30 + MEDIUM_SLIDER_DIM + 20), 100, 20, juce::Justification::centred, true);
-  g.drawText("Compressor Threshold", 20, 140, 100, 20, juce::Justification::centred, true);
-  g.drawText("Distortion Amount", 260, 140, 100, 20, juce::Justification::centred, true);
-  g.drawText("Input Gain", 20, 20, 100, 20, juce::Justification::centred, true);
-  g.drawText("Output Gain", 140, 20, 100, 20, juce::Justification::centred, true);
-  g.drawText("Mix", 20, 260, 100, 20, juce::Justification::centred, true);
-  */
+  g.drawText("Cutoff [Hz]", PADDING, PADDING + MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
+  g.drawText("Comp Thr", PADDING + MEDIUM_SLIDER_DIM + PADDING, PADDING + MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
+  g.drawText("Octaver", PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM + PADDING + 8), MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
+  g.drawText("Distortion", PADDING + MEDIUM_SLIDER_DIM + PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM + PADDING + 8), MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
+  
+  g.drawText("IN", PLUG_WIDTH - (SMALL_SLIDER_DIM + PADDING/3)*2, PLUG_HEIGHT - (SMALL_SLIDER_DIM + PADDING/2 + PADDING), SMALL_SLIDER_DIM, 25, juce::Justification::centred, true);
+  g.drawText("OUT", PLUG_WIDTH - (SMALL_SLIDER_DIM + PADDING/2), PLUG_HEIGHT - (SMALL_SLIDER_DIM + PADDING/2 + PADDING), SMALL_SLIDER_DIM, 25, juce::Justification::centred, true);
+
+  g.drawText("MIX", (PLUG_WIDTH/2) - PADDING, (PLUG_HEIGHT/2) + (BIG_SLIDER_DIM/2), BIG_SLIDER_DIM, 20, juce::Justification::centred, true);
+
 }
 
 void OneBassBandAudioProcessorEditor::resized()
