@@ -35,9 +35,9 @@ OneBassBandAudioProcessorEditor::~OneBassBandAudioProcessorEditor()
 //==============================================================================
 void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
 {
-  g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
+  g.fillAll(juce::Colours::black);
 
-  g.setColour(juce::Colours::white);
+  g.setColour(juce::Colours::orange);
   g.setFont(juce::FontOptions(15.0f));
   
   g.drawText("Cutoff [Hz]", PADDING, PADDING + MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
@@ -50,6 +50,25 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
 
   g.drawText("MIX", (PLUG_WIDTH/2) - PADDING, (PLUG_HEIGHT/2) + (BIG_SLIDER_DIM/2), BIG_SLIDER_DIM, 20, juce::Justification::centred, true);
 
+  // =============================================================================
+
+  // rectangle border
+  g.setColour(juce::Colours::orange);
+  auto bounds = getLocalBounds().toFloat();
+  float cornerSize = 10.0f;
+  float thick = 2.0f;
+  auto borderArea = bounds.reduced (thick / 2.0f);
+  g.drawRoundedRectangle(borderArea, cornerSize, thick);
+
+  // rectangle cutoff - compressor
+  g.setColour (juce::Colours::orange);
+  auto cutoffCompressArea = juce::Rectangle<float>(PADDING-5, PADDING-5, (PADDING)*2+(MEDIUM_SLIDER_DIM*2)-10, (PLUG_HEIGHT/2)-(PADDING+15));
+  g.drawRoundedRectangle(cutoffCompressArea, cornerSize, thick);
+
+  // rectangle octaver - distortion
+  g.setColour (juce::Colours::orange);
+  auto octDistArea = juce::Rectangle<float>(PADDING-5, PLUG_HEIGHT-(PADDING+MEDIUM_SLIDER_DIM+PADDING+14), (PADDING)*2+(MEDIUM_SLIDER_DIM*2)-10, (PLUG_HEIGHT/2)-(PADDING+10));
+  g.drawRoundedRectangle(octDistArea, cornerSize, thick);
 }
 
 void OneBassBandAudioProcessorEditor::resized()
