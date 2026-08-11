@@ -1,23 +1,74 @@
 #pragma once
 
 #include <JuceHeader.h>
+
 #include "PluginProcessor.h"
+#include "PluginParameters.h"
+#include "GUI/MyTheme.h"
+
+typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
+
+struct SliderPosition
+{
+  int x;
+  int y;
+  int width;
+  int height;
+};
+
+#define BIG_SLIDER_DIM 110
+#define MEDIUM_SLIDER_DIM 90
+#define SMALL_SLIDER_DIM 70
+#define PLUG_WIDTH 530
+#define PLUG_HEIGHT 320
+#define PADDING 20
+
+// ====== POSITIONS =====
+#define CUTOFF_FREQ_SLIDER_POSITION SliderPosition{PADDING, PADDING, MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM}
+#define COMPRESSOR_THR_SLIDER_POSITION SliderPosition{PADDING + MEDIUM_SLIDER_DIM + PADDING, PADDING, MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM}
+#define OCTAVER_SLIDER_POSITION SliderPosition{PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM), MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM}
+#define DISTORTION_AMOUNT_SLIDER_POSITION SliderPosition{PADDING + MEDIUM_SLIDER_DIM + PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM), MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM}
+
+#define INPUT_GAIN_SLIDER_POSITION SliderPosition{PLUG_WIDTH - (SMALL_SLIDER_DIM + PADDING/3)*2, PLUG_HEIGHT - (SMALL_SLIDER_DIM + PADDING/2), SMALL_SLIDER_DIM, SMALL_SLIDER_DIM}
+#define OUTPUT_GAIN_SLIDER_POSITION SliderPosition{PLUG_WIDTH - (SMALL_SLIDER_DIM + PADDING/2), PLUG_HEIGHT - (SMALL_SLIDER_DIM + PADDING/2), SMALL_SLIDER_DIM, SMALL_SLIDER_DIM}
+
+#define MIX_SLIDER_POSITION SliderPosition{(PLUG_WIDTH/2) - PADDING, (PLUG_HEIGHT/2) - (BIG_SLIDER_DIM/2), BIG_SLIDER_DIM, BIG_SLIDER_DIM}
+// ======================
 
 
-class OneBassBandAudioProcessorEditor  : public juce::AudioProcessorEditor
+class OneBassBandAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
-    OneBassBandAudioProcessorEditor (OneBassBandAudioProcessor&);
-    ~OneBassBandAudioProcessorEditor() override;
+  OneBassBandAudioProcessorEditor(OneBassBandAudioProcessor &p, AudioProcessorValueTreeState &vts);
+  ~OneBassBandAudioProcessorEditor() override;
 
-    //==============================================================================
-    void paint (juce::Graphics&) override;
-    void resized() override;
+  //==============================================================================
+  void paint(juce::Graphics &) override;
+  void resized() override;
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
-    OneBassBandAudioProcessor& audioProcessor;
+  void setupSlider(Slider& slider, SliderPosition position);
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OneBassBandAudioProcessorEditor)
+  OneBassBandAudioProcessor &audioProcessor;
+  AudioProcessorValueTreeState &valueTreeState;
+
+  Slider inputGainSlider;
+  Slider outputGainSlider;
+  Slider cutoffFreqSlider;
+  Slider compressorThrSlider;
+  Slider pitchShiftedOctaveSlider;
+  Slider distortionAmountSlider;
+  Slider mixSlider; // dryWet
+
+  // MyLookAndFeel myTheme;
+
+  std::unique_ptr<SliderAttachment> inputGainAttachment;
+  std::unique_ptr<SliderAttachment> outputGainAttachment;
+  std::unique_ptr<SliderAttachment> cutoffFreqAttachment;
+  std::unique_ptr<SliderAttachment> compressorThrAttachment;
+  std::unique_ptr<SliderAttachment> pitchShiftedOctaveAttachment;
+  std::unique_ptr<SliderAttachment> distortionAmountAttachment;
+  std::unique_ptr<SliderAttachment> mixAttachment;
+
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OneBassBandAudioProcessorEditor)
 };

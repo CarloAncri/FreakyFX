@@ -177,12 +177,12 @@ void OneBassBandAudioProcessor::parameterChanged(const juce::String &parameterID
 //==============================================================================
 bool OneBassBandAudioProcessor::hasEditor() const
 {
-  return false;
+  return true;
 }
 
 juce::AudioProcessorEditor *OneBassBandAudioProcessor::createEditor()
 {
-  return new OneBassBandAudioProcessorEditor(*this);
+  return new OneBassBandAudioProcessorEditor(*this, apvts);
 }
 
 //==============================================================================

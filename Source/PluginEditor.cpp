@@ -1,13 +1,28 @@
-#include "PluginProcessor.h"
 #include "PluginEditor.h"
 
 //==============================================================================
-OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor (OneBassBandAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudioProcessor &p, AudioProcessorValueTreeState &vts) :
+  AudioProcessorEditor(&p),
+  audioProcessor(p),
+  valueTreeState(vts)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (400, 300);
+  setupSlider(cutoffFreqSlider, CUTOFF_FREQ_SLIDER_POSITION);
+  setupSlider(outputGainSlider, OUTPUT_GAIN_SLIDER_POSITION);
+  setupSlider(inputGainSlider, INPUT_GAIN_SLIDER_POSITION);
+  setupSlider(distortionAmountSlider, DISTORTION_AMOUNT_SLIDER_POSITION);
+  setupSlider(pitchShiftedOctaveSlider, OCTAVER_SLIDER_POSITION);
+  setupSlider(compressorThrSlider, COMPRESSOR_THR_SLIDER_POSITION);
+  setupSlider(mixSlider, MIX_SLIDER_POSITION);
+
+  inputGainAttachment.reset(new SliderAttachment(valueTreeState, Parameters::inputGain, inputGainSlider));
+  outputGainAttachment.reset(new SliderAttachment(valueTreeState, Parameters::outputGain, outputGainSlider));
+  cutoffFreqAttachment.reset(new SliderAttachment(valueTreeState, Parameters::cutoffFreq, cutoffFreqSlider));
+  compressorThrAttachment.reset(new SliderAttachment(valueTreeState, Parameters::compressorThr, compressorThrSlider));
+  pitchShiftedOctaveAttachment.reset(new SliderAttachment(valueTreeState, Parameters::pitchShiftedOctave, pitchShiftedOctaveSlider));
+  distortionAmountAttachment.reset(new SliderAttachment(valueTreeState, Parameters::distortionAmount, distortionAmountSlider));
+  mixAttachment.reset(new SliderAttachment(valueTreeState, Parameters::dryWetAmount, mixSlider));
+
+  setSize(PLUG_WIDTH, PLUG_HEIGHT);
 }
 
 OneBassBandAudioProcessorEditor::~OneBassBandAudioProcessorEditor()
@@ -15,18 +30,33 @@ OneBassBandAudioProcessorEditor::~OneBassBandAudioProcessorEditor()
 }
 
 //==============================================================================
-void OneBassBandAudioProcessorEditor::paint (juce::Graphics& g)
+void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+  g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 
-    g.setColour (juce::Colours::white);
-    g.setFont (juce::FontOptions (15.0f));
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+  g.setColour(juce::Colours::white);
+  g.setFont(juce::FontOptions(15.0f));
+  
+  /*
+  g.drawText("Cutoff Freq", 30, 30 + MEDIUM_SLIDER_DIM, 100, 20, juce::Justification::centred, true);
+  g.drawText("Octaver", 30, PLUG_HEIGHT - (30 + MEDIUM_SLIDER_DIM + 20), 100, 20, juce::Justification::centred, true);
+  g.drawText("Compressor Threshold", 20, 140, 100, 20, juce::Justification::centred, true);
+  g.drawText("Distortion Amount", 260, 140, 100, 20, juce::Justification::centred, true);
+  g.drawText("Input Gain", 20, 20, 100, 20, juce::Justification::centred, true);
+  g.drawText("Output Gain", 140, 20, 100, 20, juce::Justification::centred, true);
+  g.drawText("Mix", 20, 260, 100, 20, juce::Justification::centred, true);
+  */
 }
 
 void OneBassBandAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+}
+
+
+void OneBassBandAudioProcessorEditor::setupSlider(Slider& slider, SliderPosition position)
+{
+  slider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+  slider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, false, 80, 20);
+  addAndMakeVisible(slider);
+  slider.setBounds(position.x, position.y, position.width, position.height);
 }
