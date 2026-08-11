@@ -22,11 +22,14 @@ OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudi
   distortionAmountAttachment.reset(new SliderAttachment(valueTreeState, Parameters::distortionAmount, distortionAmountSlider));
   mixAttachment.reset(new SliderAttachment(valueTreeState, Parameters::dryWetAmount, mixSlider));
 
+  this->setLookAndFeel(&myTheme);
+
   setSize(PLUG_WIDTH, PLUG_HEIGHT);
 }
 
 OneBassBandAudioProcessorEditor::~OneBassBandAudioProcessorEditor()
 {
+  this->setLookAndFeel(nullptr);
 }
 
 //==============================================================================

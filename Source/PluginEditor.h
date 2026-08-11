@@ -60,7 +60,7 @@ private:
   Slider distortionAmountSlider;
   Slider mixSlider; // dryWet
 
-  // MyLookAndFeel myTheme;
+  MyLookAndFeel myTheme;
 
   std::unique_ptr<SliderAttachment> inputGainAttachment;
   std::unique_ptr<SliderAttachment> outputGainAttachment;
