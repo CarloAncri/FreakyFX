@@ -12,6 +12,10 @@
               includeBinaryInJuceHeader="1" binaryDataNamespace="BinaryData"
               userNotes="Progetto per esame di Sviluppo di Tecnologie per la Produzione Musicale, a cura di Ancri Carlo e Piralla Lorenzo.">
   <MAINGROUP id="TCkZI3" name="OneBassBand">
+    <GROUP id="{EDE11395-D45C-0E26-B182-2EF49970FD5C}" name="Assets">
+      <FILE id="eWNPvM" name="Ultra-Regular.ttf" compile="0" resource="1"
+            file="Assets/Ultra-Regular.ttf"/>
+    </GROUP>
     <GROUP id="{4EABCBF3-4313-015C-310D-966C414F3D67}" name="Source">
       <GROUP id="{EA3BBBF5-31DA-B78C-E803-B0A0AA88A243}" name="DSP">
         <FILE id="PHgy66" name="DryWet.cpp" compile="1" resource="0" file="Source/DSP/DryWet.cpp"/>
@@ -34,6 +38,7 @@
         <FILE id="Lp2Flt" name="LPFilter.cpp" compile="1" resource="0" file="Source/DSP/LPFilter.cpp"/>
       </GROUP>
       <GROUP id="{A80E0DD0-A0E7-37DE-DA87-D96FA2758F77}" name="GUI">
+        <FILE id="RDZlF4" name="MyTheme.cpp" compile="1" resource="0" file="Source/GUI/MyTheme.cpp"/>
         <FILE id="NxXgRb" name="MyTheme.h" compile="0" resource="0" file="Source/GUI/MyTheme.h"/>
       </GROUP>
       <FILE id="nnbgue" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -67,29 +72,7 @@
   </MODULES>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="OneBassBand"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="OneBassBand"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors_headless" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../JUCE/modules"/>
-      </MODULEPATHS>
-    </LINUX_MAKE>
-    <XCODE_IPHONE targetFolder="Builds/iOS">
+    <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
@@ -110,28 +93,6 @@
         <MODULEPATH id="juce_gui_basics" path="../../juce"/>
         <MODULEPATH id="juce_gui_extra" path="../../juce"/>
       </MODULEPATHS>
-    </XCODE_IPHONE>
-    <VS2026 targetFolder="Builds/VisualStudio2026">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug"/>
-        <CONFIGURATION isDebug="0" name="Release"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../../juce"/>
-        <MODULEPATH id="juce_audio_devices" path="../../juce"/>
-        <MODULEPATH id="juce_audio_formats" path="../../juce"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../juce"/>
-        <MODULEPATH id="juce_audio_processors" path="../../juce"/>
-        <MODULEPATH id="juce_audio_processors_headless" path="../../juce"/>
-        <MODULEPATH id="juce_audio_utils" path="../../juce"/>
-        <MODULEPATH id="juce_core" path="../../juce"/>
-        <MODULEPATH id="juce_data_structures" path="../../juce"/>
-        <MODULEPATH id="juce_dsp" path="../../juce"/>
-        <MODULEPATH id="juce_events" path="../../juce"/>
-        <MODULEPATH id="juce_graphics" path="../../juce"/>
-        <MODULEPATH id="juce_gui_basics" path="../../juce"/>
-        <MODULEPATH id="juce_gui_extra" path="../../juce"/>
-      </MODULEPATHS>
-    </VS2026>
+    </XCODE_MAC>
   </EXPORTFORMATS>
 </JUCERPROJECT>
