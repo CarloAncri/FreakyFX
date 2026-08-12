@@ -26,6 +26,12 @@ OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudi
   octaverKnobTheme.setNumThicks(5);
   pitchShiftedOctaveSlider.setLookAndFeel(&octaverKnobTheme);
 
+  // OBB font
+  OBBFont = juce::Typeface::createSystemTypefaceFor(
+    BinaryData::UltraRegular_ttf, 
+    BinaryData::UltraRegular_ttfSize
+  );
+
   setSize(PLUG_WIDTH, PLUG_HEIGHT);
 }
 
@@ -85,6 +91,16 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   outMeter.setBounds(PLUG_WIDTH-(SMALL_SLIDER_DIM+(PADDING/2)-3), PADDING+PADDING/2, METER_WIDTH, PLUG_HEIGHT-(PADDING+SMALL_SLIDER_DIM)*2+PADDING/2);
 
   startTimerHz(30);
+
+  // OBB label
+  g.setFont(juce::FontOptions(OBBFont).withHeight(64.0f));
+  g.setColour(juce::Colours::orange);
+  g.drawText("OBB", PLUG_WIDTH/2-PADDING*2+4, 0, BIG_SLIDER_DIM+PADDING*2, BIG_SLIDER_DIM, juce::Justification::centred, false);
+
+  // coded at LIM label
+  g.setFont(juce::FontOptions(15.0f));
+  g.setColour(juce::Colours::darkgrey);
+  g.drawText("Coded at LIM.", PADDING, PLUG_HEIGHT/2-PADDING-3, 300, 40, juce::Justification::left, false);
 }
 
 void OneBassBandAudioProcessorEditor::resized()

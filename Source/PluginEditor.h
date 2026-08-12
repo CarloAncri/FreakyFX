@@ -77,5 +77,7 @@ private:
   std::unique_ptr<SliderAttachment> distortionAmountAttachment;
   std::unique_ptr<SliderAttachment> mixAttachment;
 
+  juce::Typeface::Ptr OBBFont;
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OneBassBandAudioProcessorEditor)
 };
