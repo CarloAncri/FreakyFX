@@ -23,6 +23,8 @@ OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudi
   mixAttachment.reset(new SliderAttachment(valueTreeState, Parameters::dryWetAmount, mixSlider));
 
   this->setLookAndFeel(&myTheme);
+  octaverKnobTheme.setNumThicks(5);
+  pitchShiftedOctaveSlider.setLookAndFeel(&octaverKnobTheme);
 
   setSize(PLUG_WIDTH, PLUG_HEIGHT);
 }
@@ -45,10 +47,10 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   g.drawText("Octaver", PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM + PADDING + 8), MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
   g.drawText("Distortion", PADDING + MEDIUM_SLIDER_DIM + PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM + PADDING + 8), MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
   
-  g.drawText("IN", PLUG_WIDTH - (SMALL_SLIDER_DIM + PADDING/3)*2, PLUG_HEIGHT - (SMALL_SLIDER_DIM + PADDING/2 + PADDING), SMALL_SLIDER_DIM, 25, juce::Justification::centred, true);
-  g.drawText("OUT", PLUG_WIDTH - (SMALL_SLIDER_DIM + PADDING/2), PLUG_HEIGHT - (SMALL_SLIDER_DIM + PADDING/2 + PADDING), SMALL_SLIDER_DIM, 25, juce::Justification::centred, true);
+  g.drawText("IN", PLUG_WIDTH-(SMALL_SLIDER_DIM*2+PADDING+8), PLUG_HEIGHT-(SMALL_SLIDER_DIM+PADDING*2)-5, SMALL_SLIDER_DIM, 25, juce::Justification::centred, true);
+  g.drawText("OUT", PLUG_WIDTH-(SMALL_SLIDER_DIM+PADDING+2), PLUG_HEIGHT-(SMALL_SLIDER_DIM+PADDING*2)-5, SMALL_SLIDER_DIM, 25, juce::Justification::centred, true);
 
-  g.drawText("MIX", (PLUG_WIDTH/2) - PADDING, (PLUG_HEIGHT/2) + (BIG_SLIDER_DIM/2), BIG_SLIDER_DIM, 20, juce::Justification::centred, true);
+  g.drawText("MIX", (PLUG_WIDTH)/2 -PADDING*0.7, (PLUG_HEIGHT/2) + (BIG_SLIDER_DIM/2), BIG_SLIDER_DIM, 20, juce::Justification::centred, true);
 
   // =============================================================================
 
@@ -66,9 +68,16 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   g.drawRoundedRectangle(cutoffCompressArea, cornerSize, thick);
 
   // rectangle octaver - distortion
-  g.setColour (juce::Colours::orange);
   auto octDistArea = juce::Rectangle<float>(PADDING-5, PLUG_HEIGHT-(PADDING+MEDIUM_SLIDER_DIM+PADDING+14), (PADDING)*2+(MEDIUM_SLIDER_DIM*2)-10, (PLUG_HEIGHT/2)-(PADDING+10));
   g.drawRoundedRectangle(octDistArea, cornerSize, thick);
+
+  // mix knob border
+  auto mixArea = juce::Rectangle<float>(((PLUG_WIDTH)/2 -PADDING*0.7) - (PADDING/2), (PLUG_HEIGHT/2) - (BIG_SLIDER_DIM/2) - (PADDING/2), BIG_SLIDER_DIM+PADDING, BIG_SLIDER_DIM+PADDING*2);
+  g.drawRoundedRectangle(mixArea, cornerSize, thick);
+
+  // meter border
+  auto meterArea = juce::Rectangle<float>(PLUG_WIDTH - (SMALL_SLIDER_DIM*2 + PADDING + (PADDING-5)), PADDING -5, SMALL_SLIDER_DIM*2 + PADDING, PLUG_HEIGHT - (PADDING-5)*2);
+  g.drawRoundedRectangle(meterArea, cornerSize, thick);
 }
 
 void OneBassBandAudioProcessorEditor::resized()
