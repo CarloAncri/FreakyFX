@@ -38,6 +38,8 @@
         <FILE id="Lp2Flt" name="LPFilter.cpp" compile="1" resource="0" file="Source/DSP/LPFilter.cpp"/>
       </GROUP>
       <GROUP id="{A80E0DD0-A0E7-37DE-DA87-D96FA2758F77}" name="GUI">
+        <FILE id="Jm8iW3" name="Meter.h" compile="0" resource="0" file="Source/GUI/Meter.h"/>
+        <FILE id="WPCyOc" name="Meter.cpp" compile="1" resource="0" file="Source/GUI/Meter.cpp"/>
         <FILE id="RDZlF4" name="MyTheme.cpp" compile="1" resource="0" file="Source/GUI/MyTheme.cpp"/>
         <FILE id="NxXgRb" name="MyTheme.h" compile="0" resource="0" file="Source/GUI/MyTheme.h"/>
       </GROUP>
