@@ -75,9 +75,16 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   auto mixArea = juce::Rectangle<float>(((PLUG_WIDTH)/2 -PADDING*0.7) - (PADDING/2), (PLUG_HEIGHT/2) - (BIG_SLIDER_DIM/2) - (PADDING/2), BIG_SLIDER_DIM+PADDING, BIG_SLIDER_DIM+PADDING*2);
   g.drawRoundedRectangle(mixArea, cornerSize, thick);
 
-  // meter border
+  // METERS
   auto meterArea = juce::Rectangle<float>(PLUG_WIDTH - (SMALL_SLIDER_DIM*2 + PADDING + (PADDING-5)), PADDING -5, SMALL_SLIDER_DIM*2 + PADDING, PLUG_HEIGHT - (PADDING-5)*2);
   g.drawRoundedRectangle(meterArea, cornerSize, thick);
+
+  addAndMakeVisible(inMeter);
+  addAndMakeVisible(outMeter);
+  inMeter.setBounds(PLUG_WIDTH-(SMALL_SLIDER_DIM*2+PADDING-6), PADDING+PADDING/2, METER_WIDTH, PLUG_HEIGHT-(PADDING+SMALL_SLIDER_DIM)*2+PADDING/2);
+  outMeter.setBounds(PLUG_WIDTH-(SMALL_SLIDER_DIM+(PADDING/2)-3), PADDING+PADDING/2, METER_WIDTH, PLUG_HEIGHT-(PADDING+SMALL_SLIDER_DIM)*2+PADDING/2);
+
+  startTimerHz(30);
 }
 
 void OneBassBandAudioProcessorEditor::resized()
@@ -91,4 +98,11 @@ void OneBassBandAudioProcessorEditor::setupSlider(Slider& slider, SliderPosition
   slider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, false, 80, 20);
   addAndMakeVisible(slider);
   slider.setBounds(position.x, position.y, position.width, position.height);
+}
+
+
+void OneBassBandAudioProcessorEditor::timerCallback()
+{
+  inMeter.updateLevel(audioProcessor.sigInLvl.load());
+  outMeter.updateLevel(audioProcessor.sigOutLvl.load());
 }

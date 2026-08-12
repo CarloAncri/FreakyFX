@@ -5,6 +5,7 @@
 #include "PluginProcessor.h"
 #include "PluginParameters.h"
 #include "GUI/MyTheme.h"
+#include "GUI/Meter.h"
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 
@@ -19,6 +20,7 @@ struct SliderPosition
 #define BIG_SLIDER_DIM 100
 #define MEDIUM_SLIDER_DIM 90
 #define SMALL_SLIDER_DIM 60
+#define METER_WIDTH 30
 #define PLUG_WIDTH 530
 #define PLUG_HEIGHT 320
 #define PADDING 20
@@ -36,7 +38,7 @@ struct SliderPosition
 // ======================
 
 
-class OneBassBandAudioProcessorEditor : public juce::AudioProcessorEditor
+class OneBassBandAudioProcessorEditor : public juce::AudioProcessorEditor, public juce::Timer
 {
 public:
   OneBassBandAudioProcessorEditor(OneBassBandAudioProcessor &p, AudioProcessorValueTreeState &vts);
@@ -46,6 +48,7 @@ public:
   void paint(juce::Graphics &) override;
   void resized() override;
 
+  void timerCallback() override;
 private:
   void setupSlider(Slider& slider, SliderPosition position);
 
@@ -59,6 +62,9 @@ private:
   Slider pitchShiftedOctaveSlider;
   Slider distortionAmountSlider;
   Slider mixSlider; // dryWet
+
+  Meter inMeter;
+  Meter outMeter;
 
   MyLookAndFeel myTheme;
   MyLookAndFeel octaverKnobTheme;

@@ -52,6 +52,10 @@ public:
   void getStateInformation(juce::MemoryBlock &destData) override;
   void setStateInformation(const void *data, int sizeInBytes) override;
 
+  // =============================================================================
+  std::atomic<float> sigInLvl{0.0f};
+  std::atomic<float> sigOutLvl{0.0f};
+  void calculateLevel(juce::AudioBuffer<float> &buffer, bool isInput);
 private:
   juce::AudioProcessorValueTreeState apvts;
 
