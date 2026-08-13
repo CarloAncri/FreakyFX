@@ -100,7 +100,9 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   // coded at LIM label
   g.setFont(juce::FontOptions(15.0f));
   g.setColour(juce::Colours::darkgrey);
-  g.drawText("Coded at LIM.", PADDING, PLUG_HEIGHT/2-PADDING-3, 300, 40, juce::Justification::left, false);
+  g.drawText("Coded at LIM.", ((PLUG_WIDTH)/2 -PADDING*0.7) - (PADDING/2), PLUG_HEIGHT-PADDING*4, 300, 40, juce::Justification::left, false);
+  g.drawText("Ancri C.", ((PLUG_WIDTH)/2 -PADDING*0.7) - (PADDING/2), PLUG_HEIGHT-PADDING*3, 300, 40, juce::Justification::left, false);
+  g.drawText("Piralla L.        V1.0.0", ((PLUG_WIDTH)/2 -PADDING*0.7) - (PADDING/2), PLUG_HEIGHT-PADDING*2, 300, 40, juce::Justification::left, false);
 }
 
 void OneBassBandAudioProcessorEditor::resized()
