@@ -2,6 +2,12 @@
 
 #include <JuceHeader.h>
 
+
+/**
+ * @brief A custom look and feel for the application.
+ * 
+ * This class modifies the appearance of knob-sliders.
+ */
 class MyLookAndFeel : public juce::LookAndFeel_V4
 {
 public:

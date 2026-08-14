@@ -1,6 +1,12 @@
 #pragma once
 #include <JuceHeader.h>
 
+
+/**
+ * @brief Displays a level meter for audio signals.
+ *
+ * The decay factor is costant and not adjustable.
+ */
 class Meter : public juce::Component
 {
 public:
