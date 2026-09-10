@@ -3,3 +3,5 @@ Builds/**
 JuceLibraryCode/**
 .vscode/**
 **/CMakeLists.txt
+compile_commands.json
+update-intellisense.sh
