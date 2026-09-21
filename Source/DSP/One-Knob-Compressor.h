@@ -6,17 +6,6 @@
 #include "../PluginParameters.h"
 
 
-/**
- * @class OneKnobCompressor
- * @brief This class handles the compression functionality through a single control.
- *
- * It is a feed forward compressor with hard knee and fixed attack and release times, which are not
- * exposed to the user. The only parameter is the compression amount (0.0 - 1.0): raising it lowers
- * the threshold a little and raises the compression slope a lot, so that a single knob goes from a
- * gentle levelling to a heavy squash. A makeup gain compensates part of the resulting volume loss.
- * The level detection is linked between channels, so the same gain is applied to all of them and
- * the stereo image does not move.
- */
 class OneKnobCompressor
 {
 public:
