@@ -1,4 +1,5 @@
 #include "MyTheme.h"
+#include "juce_graphics/juce_graphics.h"
 
 #define KNOB_SCALE 0.8f
 #define BORDER_WIDTH 1.50f
@@ -59,6 +60,10 @@ void MyLookAndFeel::drawRotarySlider(Graphics &g, int x, int y, int width, int h
     tempPath.applyTransform(AffineTransform::rotation(angle).translated(centreX, centreY));
     g.fillPath(tempPath);
   }
+
+  g.setColour(Colours::orange);
+  g.setFont(FontOptions(jmin(13.0f, (float) radius * 0.4f)));
+  g.drawFittedText(slider.getTextFromValue(slider.getValue()), Rectangle<float>(kx, ky, kw, kw).withSizeKeepingCentre(kw * 0.75, radius * 0.5f).toNearestInt(), Justification::centred, 1, 0.7f);
 }
 
 
