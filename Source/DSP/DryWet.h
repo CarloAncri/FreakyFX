@@ -29,7 +29,6 @@ public:
   void setDWRatio(float newValue);
   void setDelaySamples(float newDelaySamples);
 
-  // valid only between copyDrySignal and mixDrySignal of the same block
   juce::AudioBuffer<float> &getDryBuffer() { return drySignal; }
   // =================================================================
 private:
