@@ -26,8 +26,8 @@ OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudi
   octaverKnobTheme.setNumThicks(5);
   pitchShiftedOctaveSlider.setLookAndFeel(&octaverKnobTheme);
 
-  // OBB font
-  OBBFont = juce::Typeface::createSystemTypefaceFor(
+  // FFX font
+  FFXFont = juce::Typeface::createSystemTypefaceFor(
     BinaryData::UltraRegular_ttf, 
     BinaryData::UltraRegular_ttfSize
   );
@@ -92,10 +92,10 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
 
   startTimerHz(30);
 
-  // OBB label
-  g.setFont(juce::FontOptions(OBBFont).withHeight(64.0f));
+  // FFX label
+  g.setFont(juce::FontOptions(FFXFont).withHeight(64.0f));
   g.setColour(juce::Colours::orange);
-  g.drawText("OBB", PLUG_WIDTH/2-PADDING*2+4, 0, BIG_SLIDER_DIM+PADDING*2, BIG_SLIDER_DIM, juce::Justification::centred, false);
+  g.drawText("FFX", PLUG_WIDTH/2-PADDING*2+4, 0, BIG_SLIDER_DIM+PADDING*2, BIG_SLIDER_DIM, juce::Justification::centred, false);
 
   // coded at LIM label
   g.setFont(juce::FontOptions(15.0f));
