@@ -17,7 +17,7 @@ OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudi
   inputGainAttachment.reset(new SliderAttachment(valueTreeState, Parameters::inputGain, inputGainSlider));
   outputGainAttachment.reset(new SliderAttachment(valueTreeState, Parameters::outputGain, outputGainSlider));
   cutoffFreqAttachment.reset(new SliderAttachment(valueTreeState, Parameters::cutoffFreq, cutoffFreqSlider));
-  compressorThrAttachment.reset(new SliderAttachment(valueTreeState, Parameters::compressorThr, compressorThrSlider));
+  compressorThrAttachment.reset(new SliderAttachment(valueTreeState, Parameters::compressorAmount, compressorThrSlider));
   pitchShiftedOctaveAttachment.reset(new SliderAttachment(valueTreeState, Parameters::pitchShiftedOctave, pitchShiftedOctaveSlider));
   distortionAmountAttachment.reset(new SliderAttachment(valueTreeState, Parameters::distortionAmount, distortionAmountSlider));
   mixAttachment.reset(new SliderAttachment(valueTreeState, Parameters::dryWetAmount, mixSlider));
