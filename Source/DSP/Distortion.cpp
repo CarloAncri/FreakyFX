@@ -25,7 +25,6 @@ void Distortion::processBlock(juce::dsp::AudioBlock<float> &block)
 
   const float asymmetry = 0.1f * amount;
   const float dcOffsetCompensation = std::tanh(asymmetry);
-  const float makeupGain = 1.0f - (amount * 0.3f);
 
   for (size_t ch = 0; ch < numChannels; ++ch)
   {
@@ -38,7 +37,7 @@ void Distortion::processBlock(juce::dsp::AudioBlock<float> &block)
       float distorted = std::tanh(drivenX);
       distorted -= dcOffsetCompensation;
 
-      channelData[i] = distorted * makeupGain;
+      channelData[i] = distorted;
     }
   }
 }
