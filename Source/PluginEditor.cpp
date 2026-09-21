@@ -49,7 +49,7 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   g.setFont(juce::FontOptions(15.0f));
   
   g.drawText("Cutoff [Hz]", PADDING, PADDING + MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
-  g.drawText("Comp Thr", PADDING + MEDIUM_SLIDER_DIM + PADDING, PADDING + MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
+  g.drawText("Comp", PADDING + MEDIUM_SLIDER_DIM + PADDING, PADDING + MEDIUM_SLIDER_DIM, MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
   g.drawText("Octaver", PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM + PADDING + 8), MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
   g.drawText("Distortion", PADDING + MEDIUM_SLIDER_DIM + PADDING, PLUG_HEIGHT - (PADDING + MEDIUM_SLIDER_DIM + PADDING + 8), MEDIUM_SLIDER_DIM, 20, juce::Justification::centred, true);
   

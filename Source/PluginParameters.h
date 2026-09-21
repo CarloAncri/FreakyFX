@@ -27,7 +27,7 @@ namespace Parameters
 
     params.push_back(std::make_unique<AudioParameterFloat>(inputGain, "Input Gain (dB)", NormalisableRange<float>(-48.0f, 12.0f, 0.1f, 1.0f), defaultInputGain));
     params.push_back(std::make_unique<AudioParameterFloat>(outputGain, "Output Gain (dB)", NormalisableRange<float>(-48.0f, 12.0f, 0.1f, 1.0f), defaultOutputGain));
-    params.push_back(std::make_unique<AudioParameterFloat>(cutoffFreq, "Cutoff Frequency", NormalisableRange<float>(20.0f, 20000.0f, 0.001f, 0.25f), defaultCutoffFreq));
+    params.push_back(std::make_unique<AudioParameterFloat>(cutoffFreq, "Cutoff Frequency", NormalisableRange<float>(20.0f, 20000.0f, 1.0f, 0.25f), defaultCutoffFreq));
     params.push_back(std::make_unique<AudioParameterFloat>(compressorAmount, "Compressor Amount", NormalisableRange<float>(0.0f, 1.0f, 0.001f, 1.0f), defaultCompressorAmount));
     params.push_back(std::make_unique<AudioParameterInt>(pitchShiftedOctave, "Pitch Shifted Octave", -2, 2, defaultPitchShiftedOctave));
     params.push_back(std::make_unique<AudioParameterFloat>(distortionAmount, "Distortion Amount", NormalisableRange<float>(0.0f, 1.0f, 0.001f, 1.0f), defaultDistortionAmount));
