@@ -6,9 +6,9 @@
               companyEmail="lim@di.unimi.it" pluginFormats="buildAAX,buildAU,buildLV2,buildStandalone,buildUnity,buildVST3"
               pluginName="FreakyFX" pluginDesc="Effetto multiuso octaver+distorsione con filtro LP+compressore."
               pluginManufacturer="LIM" pluginManufacturerCode="LIM!" pluginCode="Xboc"
-              aaxIdentifier="com.AAX.OneBassBand" pluginAUExportPrefix="OneBassBandAU"
+              aaxIdentifier="com.AAX.FreakyFX" pluginAUExportPrefix="FreakyFXAU"
               pluginVST3Category="Distortion,Dynamics,Filter,Pitch Shift" pluginAAXCategory="1,2,4,64"
-              pluginVSTCategory="kPlugCategEffect" lv2Uri="https://www.lim.di.unimi.it/plugins/OneBassBand"
+              pluginVSTCategory="kPlugCategEffect" lv2Uri="https://www.lim.di.unimi.it/plugins/FreakyFX"
               includeBinaryInJuceHeader="1" binaryDataNamespace="BinaryData"
               userNotes="Progetto per esame di Sviluppo di Tecnologie per la Produzione Musicale, a cura di Ancri Carlo e Piralla Lorenzo.">
   <MAINGROUP id="TCkZI3" name="FreakyFX">
