@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="X8Ocxl" name="OneBassBand" projectType="audioplug" useAppConfig="1"
+<JUCERPROJECT id="X8Ocxl" name="FreakyFX" projectType="audioplug" useAppConfig="1"
               addUsingNamespaceToJuceHeader="1" jucerFormatVersion="1" version="1.0.0"
               companyName="LIM" companyWebsite="https://www.lim.di.unimi.it/"
               companyEmail="lim@di.unimi.it" pluginFormats="buildAAX,buildAU,buildLV2,buildStandalone,buildUnity,buildVST3"
-              pluginName="OneBassBand" pluginDesc="Pedale per Basso Octaver con Distorsione."
+              pluginName="FreakyFX" pluginDesc="Pedale per Basso Octaver con Distorsione."
               pluginManufacturer="LIM" pluginManufacturerCode="LIM!" pluginCode="Xboc"
               aaxIdentifier="com.AAX.OneBassBand" pluginAUExportPrefix="OneBassBandAU"
-              pluginVST3Category="Distortion,Pitch Shift" pluginAAXCategory="64"
+              pluginVST3Category="Distortion,Dynamics,Filter,Pitch Shift" pluginAAXCategory="1,2,4,64"
               pluginVSTCategory="kPlugCategEffect" lv2Uri="https://www.lim.di.unimi.it/plugins/OneBassBand"
               includeBinaryInJuceHeader="1" binaryDataNamespace="BinaryData"
               userNotes="Progetto per esame di Sviluppo di Tecnologie per la Produzione Musicale, a cura di Ancri Carlo e Piralla Lorenzo.">
-  <MAINGROUP id="TCkZI3" name="OneBassBand">
+  <MAINGROUP id="TCkZI3" name="FreakyFX">
     <GROUP id="{EDE11395-D45C-0E26-B182-2EF49970FD5C}" name="Assets">
       <FILE id="eWNPvM" name="Ultra-Regular.ttf" compile="0" resource="1"
             file="Assets/Ultra-Regular.ttf"/>
