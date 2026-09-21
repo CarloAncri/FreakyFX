@@ -82,6 +82,6 @@ void DryWet::setDelaySamples(float newDelaySamples)
 
 void DryWet::updateState()
 {
-  dryLevel.setTargetValue(std::sqrt(1.0f - dwRatio));
-  wetLevel.setTargetValue(std::sqrt(dwRatio));
+  dryLevel.setTargetValue(1.0f - dwRatio);
+  wetLevel.setTargetValue(dwRatio);
 }
