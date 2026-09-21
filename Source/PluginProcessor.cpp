@@ -9,6 +9,8 @@ OneBassBandAudioProcessor::OneBassBandAudioProcessor() : AudioProcessor(BusesPro
   inputGain{Parameters::defaultInputGain},
   octaver{Parameters::defaultPitchShiftedOctave},
   distortion{Parameters::defaultDistortionAmount},
+  lpFilter{Parameters::defaultCutoffFreq},
+  compressor{Parameters::defaultCompressorAmount},
   outputGain{Parameters::defaultOutputGain},
   dryWet{Parameters::defaultDryWetAmount}
 {
@@ -105,6 +107,9 @@ void OneBassBandAudioProcessor::prepareToPlay(double sampleRate, int samplesPerB
 
   inputGain.prepareToPlay(sampleRate);
   octaver.prepareToPlay(sampleRate, numChannels);
+  
+  lpFilter.prepareToPlay(sampleRate, numChannels);
+  compressor.prepareToPlay(sampleRate);
 
   delaySamples = sampleRateManager.prepareToPlay(sampleRate, TARGET_SAMPLE_RATE, samplesPerBlock, numChannels);
   setLatencySamples(std::round(delaySamples));
@@ -129,6 +134,12 @@ void OneBassBandAudioProcessor::processBlock(juce::AudioBuffer<float> &buffer, j
   inputGain.processBlock(buffer);
   dryWet.copyDrySignal(buffer);
 
+  // dry line: low pass filter + compressor
+  auto &dry = dryWet.getDryBuffer();
+  lpFilter.processBlock(dry);
+  compressor.processBlock(dry);
+
+  // wet line: octaver + distortion
   octaver.processBlock(buffer);
   sampleRateManager.processBlock(buffer, [this](juce::dsp::AudioBlock<float> &block) {
     distortion.processBlock(block);
@@ -148,6 +159,12 @@ void OneBassBandAudioProcessor::parameterChanged(const juce::String &parameterID
 
   if (parameterID == Parameters::distortionAmount)
     distortion.setDistortionAmount(newValue);
+
+  if (parameterID == Parameters::cutoffFreq)
+    lpFilter.setCutoffFreq(newValue);
+
+  if (parameterID == Parameters::compressorAmount)
+    compressor.setAmount(newValue);
 
   if (parameterID == Parameters::inputGain)
     inputGain.setGainDb(newValue);

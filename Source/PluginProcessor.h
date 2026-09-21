@@ -6,6 +6,8 @@
 #include "DSP/Octaver.h"
 #include "DSP/SampleRate-Incapsulator.h"
 #include "DSP/Distortion.h"
+#include "DSP/LPFilter.h"
+#include "DSP/One-Knob-Compressor.h"
 #include "DSP/Gain-Stager.h"
 #include "DSP/DryWet.h"
 
@@ -59,6 +61,8 @@ private:
   Octaver octaver;
   SampleRateIncapsulator sampleRateManager;
   Distortion distortion;
+  LPFilter lpFilter;
+  OneKnobCompressor compressor;
   GainStager outputGain;
   DryWet dryWet;
 

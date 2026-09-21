@@ -18,6 +18,8 @@
         <FILE id="gIgcuq" name="DryWet.h" compile="0" resource="0" file="Source/DSP/DryWet.h"/>
         <FILE id="dEd0E3" name="One-Knob-Compressor.h" compile="0" resource="0"
               file="Source/DSP/One-Knob-Compressor.h"/>
+        <FILE id="Ok1Cmp" name="One-Knob-Compressor.cpp" compile="1" resource="0"
+              file="Source/DSP/One-Knob-Compressor.cpp"/>
         <FILE id="xbBSA3" name="Octaver.cpp" compile="1" resource="0" file="Source/DSP/Octaver.cpp"/>
         <FILE id="TnOsEV" name="Octaver.h" compile="0" resource="0" file="Source/DSP/Octaver.h"/>
         <FILE id="vRo81c" name="Gain-Stager.cpp" compile="1" resource="0" file="Source/DSP/Gain-Stager.cpp"/>
@@ -28,6 +30,8 @@
               file="Source/DSP/SampleRate-Incapsulator.h"/>
         <FILE id="yueyJL" name="Distortion.h" compile="0" resource="0" file="Source/DSP/Distortion.h"/>
         <FILE id="m829Vw" name="Distortion.cpp" compile="1" resource="0" file="Source/DSP/Distortion.cpp"/>
+        <FILE id="Lp1Flt" name="LPFilter.h" compile="0" resource="0" file="Source/DSP/LPFilter.h"/>
+        <FILE id="Lp2Flt" name="LPFilter.cpp" compile="1" resource="0" file="Source/DSP/LPFilter.cpp"/>
       </GROUP>
       <GROUP id="{A80E0DD0-A0E7-37DE-DA87-D96FA2758F77}" name="GUI">
         <FILE id="NxXgRb" name="MyTheme.h" compile="0" resource="0" file="Source/GUI/MyTheme.h"/>

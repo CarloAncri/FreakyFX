@@ -40,7 +40,10 @@ void DryWet::copyDrySignal(juce::AudioBuffer<float> &sourceBuffer)
   auto numCh = sourceBuffer.getNumChannels();
   auto numSamples = sourceBuffer.getNumSamples();
   auto realChannels = juce::jmin(numCh, drySignal.getNumChannels());
-  
+
+  // resize to the current block without reallocating (memory reserved in prepareToPlay)
+  drySignal.setSize(drySignal.getNumChannels(), numSamples, false, false, true);
+
   for (int ch = 0; ch < realChannels; ++ch)
     drySignal.copyFrom(ch, 0, sourceBuffer, ch, 0, numSamples);
 
