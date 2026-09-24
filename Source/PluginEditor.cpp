@@ -1,7 +1,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudioProcessor &p, AudioProcessorValueTreeState &vts) :
+FreakyFXAudioProcessorEditor::FreakyFXAudioProcessorEditor(FreakyFXAudioProcessor &p, AudioProcessorValueTreeState &vts) :
   AudioProcessorEditor(&p),
   audioProcessor(p),
   valueTreeState(vts)
@@ -35,13 +35,13 @@ OneBassBandAudioProcessorEditor::OneBassBandAudioProcessorEditor(OneBassBandAudi
   setSize(PLUG_WIDTH, PLUG_HEIGHT);
 }
 
-OneBassBandAudioProcessorEditor::~OneBassBandAudioProcessorEditor()
+FreakyFXAudioProcessorEditor::~FreakyFXAudioProcessorEditor()
 {
   this->setLookAndFeel(nullptr);
 }
 
 //==============================================================================
-void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
+void FreakyFXAudioProcessorEditor::paint(juce::Graphics &g)
 {
   g.fillAll(juce::Colours::black);
 
@@ -105,12 +105,12 @@ void OneBassBandAudioProcessorEditor::paint(juce::Graphics &g)
   g.drawText("Piralla L.        V1.0.0", ((PLUG_WIDTH)/2 -PADDING*0.7) - (PADDING/2), PLUG_HEIGHT-PADDING*2, 300, 40, juce::Justification::left, false);
 }
 
-void OneBassBandAudioProcessorEditor::resized()
+void FreakyFXAudioProcessorEditor::resized()
 {
 }
 
 
-void OneBassBandAudioProcessorEditor::setupSlider(Slider& slider, SliderPosition position)
+void FreakyFXAudioProcessorEditor::setupSlider(Slider& slider, SliderPosition position)
 {
   slider.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
   slider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, false, 80, 20);
@@ -119,7 +119,7 @@ void OneBassBandAudioProcessorEditor::setupSlider(Slider& slider, SliderPosition
 }
 
 
-void OneBassBandAudioProcessorEditor::timerCallback()
+void FreakyFXAudioProcessorEditor::timerCallback()
 {
   inMeter.updateLevel(audioProcessor.sigInLvl.load());
   outMeter.updateLevel(audioProcessor.sigOutLvl.load());

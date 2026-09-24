@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-OneBassBandAudioProcessor::OneBassBandAudioProcessor() : AudioProcessor(BusesProperties()
+FreakyFXAudioProcessor::FreakyFXAudioProcessor() : AudioProcessor(BusesProperties()
   .withInput("Input", juce::AudioChannelSet::stereo(), true)
   .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
   apvts(*this, nullptr, "PARAMETERS", Parameters::createParameterLayout()),
@@ -17,12 +17,12 @@ OneBassBandAudioProcessor::OneBassBandAudioProcessor() : AudioProcessor(BusesPro
   Parameters::addListenerToAllParameters(apvts, this);
 }
 
-OneBassBandAudioProcessor::~OneBassBandAudioProcessor()
+FreakyFXAudioProcessor::~FreakyFXAudioProcessor()
 {
 }
 
 
-bool OneBassBandAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool FreakyFXAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   const auto& mainIn = layouts.getMainInputChannelSet();
   const auto& mainOut = layouts.getMainOutputChannelSet();
@@ -40,12 +40,12 @@ bool OneBassBandAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
 }
 
 //==============================================================================
-const juce::String OneBassBandAudioProcessor::getName() const
+const juce::String FreakyFXAudioProcessor::getName() const
 {
   return JucePlugin_Name;
 }
 
-bool OneBassBandAudioProcessor::acceptsMidi() const
+bool FreakyFXAudioProcessor::acceptsMidi() const
 {
 #if JucePlugin_WantsMidiInput
   return true;
@@ -54,7 +54,7 @@ bool OneBassBandAudioProcessor::acceptsMidi() const
 #endif
 }
 
-bool OneBassBandAudioProcessor::producesMidi() const
+bool FreakyFXAudioProcessor::producesMidi() const
 {
 #if JucePlugin_ProducesMidiOutput
   return true;
@@ -63,7 +63,7 @@ bool OneBassBandAudioProcessor::producesMidi() const
 #endif
 }
 
-bool OneBassBandAudioProcessor::isMidiEffect() const
+bool FreakyFXAudioProcessor::isMidiEffect() const
 {
 #if JucePlugin_IsMidiEffect
   return true;
@@ -72,36 +72,36 @@ bool OneBassBandAudioProcessor::isMidiEffect() const
 #endif
 }
 
-double OneBassBandAudioProcessor::getTailLengthSeconds() const
+double FreakyFXAudioProcessor::getTailLengthSeconds() const
 {
   return 0.0;
 }
 
-int OneBassBandAudioProcessor::getNumPrograms()
+int FreakyFXAudioProcessor::getNumPrograms()
 {
   return 1;
 }
 
-int OneBassBandAudioProcessor::getCurrentProgram()
+int FreakyFXAudioProcessor::getCurrentProgram()
 {
   return 0;
 }
 
-void OneBassBandAudioProcessor::setCurrentProgram(int index)
+void FreakyFXAudioProcessor::setCurrentProgram(int index)
 {
 }
 
-const juce::String OneBassBandAudioProcessor::getProgramName(int index)
+const juce::String FreakyFXAudioProcessor::getProgramName(int index)
 {
   return {};
 }
 
-void OneBassBandAudioProcessor::changeProgramName(int index, const juce::String &newName)
+void FreakyFXAudioProcessor::changeProgramName(int index, const juce::String &newName)
 {
 }
 
 //==============================================================================
-void OneBassBandAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
+void FreakyFXAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
   int numChannels = getTotalNumInputChannels();
 
@@ -119,14 +119,14 @@ void OneBassBandAudioProcessor::prepareToPlay(double sampleRate, int samplesPerB
   outputGain.prepareToPlay(sampleRate);
 }
 
-void OneBassBandAudioProcessor::releaseResources()
+void FreakyFXAudioProcessor::releaseResources()
 {
   dryWet.releaseResources();
   octaver.releaseResources();
   sampleRateManager.reset();
 }
 
-void OneBassBandAudioProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce::MidiBuffer &midiMessages)
+void FreakyFXAudioProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce::MidiBuffer &midiMessages)
 {
   juce::ScopedNoDenormals noDenormals;
   juce::ignoreUnused(midiMessages);
@@ -151,7 +151,7 @@ void OneBassBandAudioProcessor::processBlock(juce::AudioBuffer<float> &buffer, j
   calculateLevel(buffer, false);
 }
 
-void OneBassBandAudioProcessor::parameterChanged(const juce::String &parameterID, float newValue)
+void FreakyFXAudioProcessor::parameterChanged(const juce::String &parameterID, float newValue)
 { 
   if (parameterID == Parameters::dryWetAmount)
     dryWet.setDWRatio(newValue);
@@ -177,17 +177,17 @@ void OneBassBandAudioProcessor::parameterChanged(const juce::String &parameterID
 }
 
 //==============================================================================
-bool OneBassBandAudioProcessor::hasEditor() const
+bool FreakyFXAudioProcessor::hasEditor() const
 {
   return true;
 }
 
-juce::AudioProcessorEditor *OneBassBandAudioProcessor::createEditor()
+juce::AudioProcessorEditor *FreakyFXAudioProcessor::createEditor()
 {
-  return new OneBassBandAudioProcessorEditor(*this, apvts);
+  return new FreakyFXAudioProcessorEditor(*this, apvts);
 }
 
-void OneBassBandAudioProcessor::calculateLevel(juce::AudioBuffer<float> &buffer, bool isInput)
+void FreakyFXAudioProcessor::calculateLevel(juce::AudioBuffer<float> &buffer, bool isInput)
 {
   float maxRms = 0.0f;
   for (int ch = 0; ch < buffer.getNumChannels(); ++ch)
@@ -204,14 +204,14 @@ void OneBassBandAudioProcessor::calculateLevel(juce::AudioBuffer<float> &buffer,
 }
 
 //==============================================================================
-void OneBassBandAudioProcessor::getStateInformation(juce::MemoryBlock &destData)
+void FreakyFXAudioProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
   // You should use this method to store your parameters in the memory block.
   // You could do that either as raw data, or use the XML or ValueTree classes
   // as intermediaries to make it easy to save and load complex data.
 }
 
-void OneBassBandAudioProcessor::setStateInformation(const void *data, int sizeInBytes)
+void FreakyFXAudioProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
   // You should use this method to restore your parameters from this memory block,
   // whose contents will have been created by the getStateInformation() call.
@@ -221,5 +221,5 @@ void OneBassBandAudioProcessor::setStateInformation(const void *data, int sizeIn
 // This creates new instances of the plugin..
 juce::AudioProcessor *JUCE_CALLTYPE createPluginFilter()
 {
-  return new OneBassBandAudioProcessor();
+  return new FreakyFXAudioProcessor();
 }

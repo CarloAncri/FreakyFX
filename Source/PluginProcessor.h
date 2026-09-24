@@ -13,12 +13,12 @@
 
 # define TARGET_SAMPLE_RATE 96000.0f
 
-class OneBassBandAudioProcessor : public juce::AudioProcessor, private juce::AudioProcessorValueTreeState::Listener
+class FreakyFXAudioProcessor : public juce::AudioProcessor, private juce::AudioProcessorValueTreeState::Listener
 {
 public:
   //==============================================================================
-  OneBassBandAudioProcessor();
-  ~OneBassBandAudioProcessor() override;
+  FreakyFXAudioProcessor();
+  ~FreakyFXAudioProcessor() override;
 
   bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
   //==============================================================================
@@ -71,5 +71,5 @@ private:
   DryWet dryWet;
 
   //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OneBassBandAudioProcessor)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FreakyFXAudioProcessor)
 };

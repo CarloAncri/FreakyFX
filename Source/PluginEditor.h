@@ -38,11 +38,11 @@ struct SliderPosition
 // ======================
 
 
-class OneBassBandAudioProcessorEditor : public juce::AudioProcessorEditor, public juce::Timer
+class FreakyFXAudioProcessorEditor : public juce::AudioProcessorEditor, public juce::Timer
 {
 public:
-  OneBassBandAudioProcessorEditor(OneBassBandAudioProcessor &p, AudioProcessorValueTreeState &vts);
-  ~OneBassBandAudioProcessorEditor() override;
+  FreakyFXAudioProcessorEditor(FreakyFXAudioProcessor &p, AudioProcessorValueTreeState &vts);
+  ~FreakyFXAudioProcessorEditor() override;
 
   //==============================================================================
   void paint(juce::Graphics &) override;
@@ -52,7 +52,7 @@ public:
 private:
   void setupSlider(Slider& slider, SliderPosition position);
 
-  OneBassBandAudioProcessor &audioProcessor;
+  FreakyFXAudioProcessor &audioProcessor;
   AudioProcessorValueTreeState &valueTreeState;
 
   Slider inputGainSlider;
@@ -79,5 +79,5 @@ private:
 
   juce::Typeface::Ptr FFXFont;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OneBassBandAudioProcessorEditor)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FreakyFXAudioProcessorEditor)
 };
