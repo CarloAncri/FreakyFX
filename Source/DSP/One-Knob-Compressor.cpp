@@ -55,11 +55,13 @@ void OneKnobCompressor::processBlock(juce::AudioBuffer<float> &buffer)
   const int numChannels = buffer.getNumChannels();
   const int numSamples = buffer.getNumSamples();
 
+  auto channels = buffer.getArrayOfWritePointers();
+
   for (int i = 0; i < numSamples; ++i)
   {
     float peak = 0.0f;
     for (int ch = 0; ch < numChannels; ++ch)
-      peak = juce::jmax(peak, std::abs(buffer.getSample(ch, i)));
+      peak = juce::jmax(peak, std::abs(channels[ch][i]));
 
     const float levelDb = juce::Decibels::gainToDecibels(peak, minLevelDb);
     const float overDb = levelDb - thresholdDb;
@@ -71,6 +73,6 @@ void OneKnobCompressor::processBlock(juce::AudioBuffer<float> &buffer)
     const float gain = juce::Decibels::decibelsToGain(gainDb) * makeupGain;
 
     for (int ch = 0; ch < numChannels; ++ch)
-      buffer.getWritePointer(ch)[i] *= gain;
+      channels[ch][i] *= gain;
   }
 }
