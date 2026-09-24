@@ -32,6 +32,10 @@ FreakyFXAudioProcessorEditor::FreakyFXAudioProcessorEditor(FreakyFXAudioProcesso
     BinaryData::UltraRegular_ttfSize
   );
 
+  addAndMakeVisible(inMeter);
+  addAndMakeVisible(outMeter);
+  startTimerHz(30);
+
   setSize(PLUG_WIDTH, PLUG_HEIGHT);
 }
 
@@ -85,13 +89,6 @@ void FreakyFXAudioProcessorEditor::paint(juce::Graphics &g)
   auto meterArea = juce::Rectangle<float>(PLUG_WIDTH - (SMALL_SLIDER_DIM*2 + PADDING + (PADDING-5)), PADDING -5, SMALL_SLIDER_DIM*2 + PADDING, PLUG_HEIGHT - (PADDING-5)*2);
   g.drawRoundedRectangle(meterArea, cornerSize, thick);
 
-  addAndMakeVisible(inMeter);
-  addAndMakeVisible(outMeter);
-  inMeter.setBounds(PLUG_WIDTH-(SMALL_SLIDER_DIM*2+PADDING-6), PADDING+PADDING/2, METER_WIDTH, PLUG_HEIGHT-(PADDING+SMALL_SLIDER_DIM)*2+PADDING/2);
-  outMeter.setBounds(PLUG_WIDTH-(SMALL_SLIDER_DIM+(PADDING/2)-3), PADDING+PADDING/2, METER_WIDTH, PLUG_HEIGHT-(PADDING+SMALL_SLIDER_DIM)*2+PADDING/2);
-
-  startTimerHz(30);
-
   // FFX label
   g.setFont(juce::FontOptions(FFXFont).withHeight(64.0f));
   g.setColour(juce::Colours::orange);
@@ -107,6 +104,8 @@ void FreakyFXAudioProcessorEditor::paint(juce::Graphics &g)
 
 void FreakyFXAudioProcessorEditor::resized()
 {
+  inMeter.setBounds(PLUG_WIDTH-(SMALL_SLIDER_DIM*2+PADDING-6), PADDING+PADDING/2, METER_WIDTH, PLUG_HEIGHT-(PADDING+SMALL_SLIDER_DIM)*2+PADDING/2);
+  outMeter.setBounds(PLUG_WIDTH-(SMALL_SLIDER_DIM+(PADDING/2)-3), PADDING+PADDING/2, METER_WIDTH, PLUG_HEIGHT-(PADDING+SMALL_SLIDER_DIM)*2+PADDING/2);
 }
 
 
