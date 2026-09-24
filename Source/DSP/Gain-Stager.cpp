@@ -21,13 +21,14 @@ void GainStager::processBlock(juce::AudioBuffer<float> &buffer)
   {
     const int numChannels = buffer.getNumChannels();
     const int numSamples = buffer.getNumSamples();
+    auto writePointers = buffer.getArrayOfWritePointers();
 
     for (int i = 0; i < numSamples; ++i)
     {
       float currentGain = smoothedGain.getNextValue();
 
       for (int ch = 0; ch < numChannels; ++ch)
-        buffer.getWritePointer(ch)[i] *= currentGain;
+        writePointers[ch][i] *= currentGain;
     }
   }
   else

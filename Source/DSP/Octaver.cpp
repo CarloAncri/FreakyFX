@@ -130,9 +130,10 @@ void Octaver::processBlock(juce::AudioBuffer<float> &buffer)
 
 float Octaver::getLinearSample(int channel, float readPos, int bufferLength)
 {
-  while (readPos < 0.0f)
+  if (readPos < 0.0f)
     readPos += static_cast<float>(bufferLength);
-  while (readPos >= static_cast<float>(bufferLength))
+    
+  if (readPos >= static_cast<float>(bufferLength))
     readPos -= static_cast<float>(bufferLength);
 
   int index = static_cast<int>(std::floor(readPos));
