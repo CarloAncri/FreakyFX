@@ -13,7 +13,7 @@
 
 # define TARGET_SAMPLE_RATE 96000.0f
 
-class FreakyFXAudioProcessor : public juce::AudioProcessor, private juce::AudioProcessorValueTreeState::Listener
+class FreakyFXAudioProcessor : public juce::AudioProcessor, public juce::AudioProcessorValueTreeState::Listener
 {
 public:
   //==============================================================================
