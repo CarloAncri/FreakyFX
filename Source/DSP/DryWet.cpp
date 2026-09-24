@@ -47,6 +47,9 @@ void DryWet::copyDrySignal(juce::AudioBuffer<float> &sourceBuffer)
   for (int ch = 0; ch < realChannels; ++ch)
     drySignal.copyFrom(ch, 0, sourceBuffer, ch, 0, numSamples);
 
+  for (int ch = realChannels; ch < drySignal.getNumChannels(); ++ch)
+    drySignal.clear(ch, 0, numSamples);
+
   juce::dsp::AudioBlock<float> block(drySignal);
   juce::dsp::ProcessContextReplacing<float> context(block);
   delayLine.process(context);
